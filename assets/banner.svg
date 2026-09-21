@@ -1,13 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
   <defs>
-    <!-- Dark Cyber/Defense Gradient Background -->
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Background Gradients -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#090d16" />
       <stop offset="50%" stop-color="#0f172a" />
       <stop offset="100%" stop-color="#030712" />
     </linearGradient>
 
-    <!-- Glowing Accent Gradients -->
     <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8"/>
       <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
@@ -26,38 +25,53 @@
 
     <!-- Glow Filter -->
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feGaussianBlur stdDeviation="6" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
 
   <style>
-    .title {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    .title-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-weight: 900;
-      font-size: 64px;
+      font-size: 60px;
       fill: #ffffff;
       letter-spacing: 4px;
     }
-    .subtitle {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 500;
-      font-size: 20px;
+    .subtitle-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      font-size: 18px;
       fill: #38bdf8;
       letter-spacing: 2px;
     }
-    .tagline {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    .tagline-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 15px;
       fill: #94a3b8;
     }
+    .badge-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      fill: #38bdf8;
+      letter-spacing: 1.5px;
+    }
+    .footer-text {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+      fill: #64748b;
+    }
+    
+    /* Animations */
     .pulse-node {
       animation: pulse 3s infinite ease-in-out;
+      transform-origin: 950px 200px;
     }
     .radar-sweep {
       transform-origin: 950px 200px;
-      animation: rotate 12s linear infinite;
+      animation: rotateSweep 12s linear infinite;
     }
     .flow-line {
       stroke-dasharray: 8, 8;
@@ -67,7 +81,7 @@
       0%, 100% { transform: scale(1); opacity: 0.6; }
       50% { transform: scale(1.15); opacity: 1; }
     }
-    @keyframes rotate {
+    @keyframes rotateSweep {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
@@ -76,61 +90,63 @@
     }
   </style>
 
-  <!-- Background -->
-  <rect width="1200" height="400" fill="url(#bg-grad)" rx="16" />
-  <rect width="1200" height="400" fill="url(#grid)" rx="16" />
+  <!-- Background Layer -->
+  <rect width="1200" height="400" fill="url(#bg)" rx="12" />
+  <rect width="1200" height="400" fill="url(#grid)" rx="12" />
 
-  <!-- DYNAMIC BACKGROUND ELEMENTS (Positioned safely on the right/background layer) -->
-  <g opacity="0.35">
-    <!-- Animated Network Nodes & Graph Lines (Background right side) -->
+  <!-- Ambient Glow Effects -->
+  <circle cx="200" cy="100" r="180" fill="url(#cyan-glow)" opacity="0.15" filter="url(#glow)" />
+  <circle cx="1000" cy="300" r="200" fill="url(#purple-glow)" opacity="0.2" filter="url(#glow)" />
+
+  <!-- DYNAMIC BACKGROUND GRAPH & RADAR (Positioned on the Right Side) -->
+  <g opacity="0.4">
+    <!-- Animated Network Lines -->
     <path class="flow-line" d="M 750 100 L 950 200 L 1100 120 M 950 200 L 880 320 M 950 200 L 1120 300" stroke="#06b6d4" stroke-width="2" fill="none" />
     
-    <!-- Nodes -->
+    <!-- Graph Nodes -->
     <circle cx="750" cy="100" r="6" fill="#38bdf8" />
     <circle cx="1100" cy="120" r="8" fill="#8b5cf6" />
     <circle cx="880" cy="320" r="7" fill="#06b6d4" />
     <circle cx="1120" cy="300" r="9" fill="#38bdf8" />
 
-    <!-- Radar Circle Visual (Right Focus) -->
+    <!-- Radar Rings -->
     <circle cx="950" cy="200" r="140" fill="none" stroke="#1e293b" stroke-width="2" />
     <circle cx="950" cy="200" r="90" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="4, 4" />
     <circle cx="950" cy="200" r="40" fill="none" stroke="#06b6d4" stroke-width="1" stroke-opacity="0.5" />
 
-    <!-- Radar Sweep Line -->
+    <!-- Radar Sweep Beam -->
     <g class="radar-sweep">
-      <line x1="950" y1="200" x2="1090" y2="200" stroke="url(#cyan-glow)" stroke-width="3" />
-      <polygon points="950,200 1080,170 1090,200" fill="url(#cyan-glow)" opacity="0.15" />
+      <line x1="950" y1="200" x2="1090" y2="200" stroke="#06b6d4" stroke-width="3" opacity="0.8" />
+      <polygon points="950,200 1080,170 1090,200" fill="url(#cyan-glow)" opacity="0.3" />
     </g>
 
-    <!-- Central Graph Pulsing Center Node -->
-    <circle cx="950" cy="200" r="14" fill="#06b6d4" class="pulse-node" filter="url(#glow)" />
-    <circle cx="950" cy="200" r="6" fill="#ffffff" />
+    <!-- Central Pulsing Node -->
+    <circle cx="950" cy="200" r="12" fill="#06b6d4" class="pulse-node" filter="url(#glow)" />
+    <circle cx="950" cy="200" r="5" fill="#ffffff" />
   </g>
 
-  <!-- Ambient Light Orbs -->
-  <circle cx="200" cy="100" r="180" fill="url(#cyan-glow)" opacity="0.15" filter="url(#glow)" />
-  <circle cx="1000" cy="300" r="200" fill="url(#purple-glow)" opacity="0.2" filter="url(#glow)" />
-
-  <!-- FOREGROUND TEXT & BRANDING (Clean & Unblocked) -->
+  <!-- FOREGROUND CONTENT LAYER (Guaranteed No Overlap) -->
   <g transform="translate(80, 0)">
-    <!-- Top Classification/Status Tag -->
-    <rect x="0" y="75" width="230" height="28" rx="14" fill="#0f172a" stroke="#06b6d4" stroke-width="1" />
-    <circle cx="16" cy="89" r="4" fill="#10b981" />
-    <text x="28" y="94" font-family="sans-serif" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1.5">OPEN-SOURCE GOTHAM</text>
+    <!-- Status Pill Badge -->
+    <g transform="translate(0, 75)">
+      <rect width="220" height="28" rx="14" fill="#0f172a" stroke="#06b6d4" stroke-width="1" />
+      <circle cx="16" cy="14" r="4" fill="#10b981" />
+      <text x="30" y="18" class="badge-text">OPEN-SOURCE GOTHAM</text>
+    </g>
 
-    <!-- Main Title -->
-    <text x="0" y="175" class="title">PROJECT VISHNU</text>
+    <!-- Main Heading -->
+    <text x="0" y="175" class="title-text">PROJECT VISHNU</text>
 
     <!-- Subtitle -->
-    <text x="0" y="215" class="subtitle">INTELLIGENCE FUSION & Operational ANALYTICS PLATFORM</text>
+    <text x="0" y="212" class="subtitle-text">INTELLIGENCE FUSION &amp; OPERATIONAL ANALYTICS PLATFORM</text>
 
-    <!-- Divider Line -->
-    <line x1="0" y1="240" x2="520" y2="240" stroke="url(#cyan-glow)" stroke-width="2" />
+    <!-- Separator Line -->
+    <line x1="0" y1="238" x2="540" y2="238" stroke="url(#cyan-glow)" stroke-width="2" />
 
-    <!-- Tagline & Core Pillars -->
-    <text x="0" y="275" class="tagline">✦ Dynamic Ontology &nbsp;|&nbsp; ✦ Link Analysis &nbsp;|&nbsp; ✦ Geospatial GIS &nbsp;|&nbsp; ✦ Tactical AI</text>
+    <!-- Core Pillars Tagline -->
+    <text x="0" y="272" class="tagline-text">Dynamic Ontology  •  Link Analysis  •  Geospatial GIS  •  Tactical AI</text>
 
-    <!-- Footer Meta -->
-    <text x="0" y="325" font-family="monospace" font-size="13" fill="#64748b">An Open Alternative to Palantir Gotham • Defense & Enterprise Grade</text>
+    <!-- Footer Note -->
+    <text x="0" y="322" class="footer-text">An Open Alternative to Palantir Gotham  |  Defense &amp; Enterprise Grade</text>
   </g>
 </svg>
