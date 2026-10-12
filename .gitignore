@@ -1,9 +1,40 @@
+# ── Project ──────────────────────────
 *.bak
 *.bk
-*.env
-*.json
 .cache
-__pycache__/
 contributors.txt
-node_modules
 temp_repo_clone
+
+# ── Python ───────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+backend/venv/
+backend/*.db
+backend/uploads/
+*.egg-info/
+dist/
+build/
+
+# ── Node / Frontend ─────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ── IDE ──────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS ───────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Environment ─────────────────────
+.env
+.env.local
+.env.*.local
