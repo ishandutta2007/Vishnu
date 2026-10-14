@@ -9,7 +9,7 @@
   <a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0" /></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" /></a>
-  <a href="#-roadmap--milestones"><img src="https://img.shields.io/badge/Status-Planning_%26_Architecture-orange.svg" alt="Status: Planning & Architecture" /></a>
+  <a href="#-roadmap--milestones"><img src="https://img.shields.io/badge/Status-Phase_1_Complete-brightgreen.svg" alt="Status: Phase 1 Complete" /></a>
   <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
 </p>
 
@@ -33,6 +33,29 @@
 **Project Vishnu** bridges the gap between fragmented data sources and tactical/strategic decision-making. Built for intelligence analysts 🕵️‍♂️, defense operations 🎖️, law enforcement agencies 🚔, disaster response teams 🚨, and enterprise risk managers 🏢, Vishnu delivers a unified, ontology-driven operational picture.
 
 By leveraging modern open-source software (OSS) infrastructure ⚡, Vishnu enables multi-source data ingestion 📥, entity resolution 🧩, dynamic graph visualization 📊, geospatial-temporal tracking 🌐, real-time collaboration 🤝, and AI-assisted intelligence synthesis 🧠.
+
+---
+
+## ⚡ Quick Start (5 Minutes)
+
+> **Prerequisites:** [Python 3.10+](https://www.python.org/downloads/) and [Node.js 18+](https://nodejs.org/)
+> 📖 **Full guide with screenshots & troubleshooting:** [QUICKSTART.md](QUICKSTART.md)
+
+```bash
+# 1. Backend — open a terminal
+cd backend
+python -m venv venv
+venv\Scripts\activate        # Mac/Linux: source venv/bin/activate
+pip install -r requirements.txt
+python run.py                # → API running on http://localhost:8000
+
+# 2. Frontend — open a NEW terminal
+cd frontend
+npm install
+npm run dev                  # → UI running on http://localhost:5173
+```
+
+**3. Open [http://localhost:5173](http://localhost:5173)** → Click **"Load Demo Data"** → Explore the Operation Nightfall intelligence network! 🔱
 
 ---
 
@@ -99,14 +122,25 @@ flowchart TD
 
 ## 🛠️ Open Source Technology Stack 💻
 
+### ✅ Currently Implemented (Phase 1)
+
+| Category | Technology | Status |
+| :--- | :--- | :--- |
+| **Frontend / UI Canvas** 🎨 | React 18, TypeScript, Cytoscape.js, Tailwind CSS, Vite | ✅ Live |
+| **Backend API** ⚙️ | Python 3.11+, FastAPI, SQLAlchemy, Pydantic | ✅ Live |
+| **Database** 💾 | SQLite (zero-config, portable) | ✅ Live |
+| **Graph Analytics** 🕸️ | NetworkX (centrality, communities, shortest path) | ✅ Live |
+| **Entity Resolution** 🧩 | difflib SequenceMatcher (name-based dedup) | ✅ Live |
+
+### 🔮 Planned (Future Phases)
+
 | Category | Open-Source Technology Stack Options |
 | :--- | :--- |
-| **Frontend / UI Canvas** 🎨 | React, TypeScript, Cytoscape.js / G6, Mapbox GL JS / Deck.gl, Tailwind CSS |
-| **Backend & Microservices** ⚙️ | Go / Python (FastAPI) / Rust, GraphQL, gRPC |
-| **Graph Analytics Database** 🕸️ | Neo4j, Apache Age, Memgraph |
+| **Graph Database** 🕸️ | Neo4j, Apache Age, Memgraph |
 | **Search & Indexing Engine** 🔍 | OpenSearch, Elasticsearch |
 | **Vector DB (AI & RAG)** 🧠 | Qdrant, Milvus, pgvector |
 | **Streaming & Data Storage** 💾 | Apache Kafka, ClickHouse, PostgreSQL, MinIO |
+| **GIS / Mapping** 🗺️ | Mapbox GL JS, Deck.gl |
 | **Orchestration & Infra** 🐳 | Kubernetes, Helm, Apache Airflow |
 
 ---
@@ -132,21 +166,31 @@ flowchart TD
 
 ## 🛣️ Roadmap & Milestones 🗺️
 
-- [ ] **Phase 1: Core Foundation** 🧱
-  - Project setup & architecture RFC
-  - Data model & dynamic ontology framework schema setup
-  - Basic GraphQL / REST backend API core
+- [x] **Phase 1: Core Foundation** 🧱 ✅ **COMPLETE**
+  - [x] Project setup & architecture
+  - [x] Data model & dynamic ontology framework (Entity + Relationship models with flexible JSON properties)
+  - [x] REST backend API core (FastAPI with full CRUD, pagination, filtering)
+  - [x] Interactive graph link analysis canvas (Cytoscape.js)
+  - [x] 360-degree Entity Dossier management UI
+  - [x] Entity Resolution & Deduplication (name-similarity matching + merge)
+  - [x] Graph analytics (centrality, community detection, shortest path, neighbor expansion)
+  - [x] Full-text search across all entities
+  - [x] CSV & JSON data ingestion endpoints
+  - [x] Demo seed data scenario (Operation Nightfall — 27 entities, 47 relationships)
 - [ ] **Phase 2: Ingestion & Resolution** 📥
-  - Batch/stream data ingestion pipelines
-  - Rule-based Entity Resolution & Deduplication framework
-- [ ] **Phase 3: Visual Analytics Core** 📊
-  - Dynamic graph link analysis canvas UI
-  - 360-degree Dossier management UI
+  - Batch/stream data ingestion pipelines (Kafka, Airflow)
+  - ML-driven Entity Resolution & Deduplication
+  - Data provenance & lineage tracking
+- [ ] **Phase 3: Geospatial & Temporal** 🗺️
   - Geospatial map view integration (Deck.gl / Mapbox)
+  - Real-time asset tracking (AIS, ADS-B, GPS)
+  - Timeline & event correlation engine
+  - Temporal playback controls
 - [ ] **Phase 4: AI & Collaborative Suite** 🤖
   - LLM RAG engine integration over unstructured docs & ontology
   - Real-time collaborative workspace (WebSocket/CRDT)
   - Audit logging, RBAC/ABAC security layer completion
+  - Automated briefing & intelligence synthesis
 
 ---
 
